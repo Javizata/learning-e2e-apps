@@ -21,11 +21,11 @@ class TodoI(BaseModel):
 
 
 TODO_LIST: list[TodoI] = [
-    TodoI(id=1, description="To Do List", completed=False),
-    TodoI(id=2, description="To Do List", completed=True),
-    TodoI(id=3, description="To Do List", completed=False),
-    TodoI(id=4, description="To Do List", completed=True),
-    TodoI(id=5, description="To Do List", completed=True),
+    TodoI(id=1, description="Laundry", completed=False),
+    TodoI(id=2, description="Grocery Shopping", completed=True),
+    TodoI(id=3, description="Clean the House", completed=False),
+    TodoI(id=4, description="Pay Bills", completed=True),
+    TodoI(id=5, description="Exercise", completed=True),
 ]
 
 

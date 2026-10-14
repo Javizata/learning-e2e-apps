@@ -4,3 +4,7 @@
 /learning-e2e-apps/.venv/
 /learning_exercises/*
 /env/
+.vscode/*
+/routers/__pycache__/*
+__pycache__/
+*.py[cod]

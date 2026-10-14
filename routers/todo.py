@@ -77,6 +77,7 @@ async def create_todo_list(data: TodoI):
 @router.get("/async-endpoint")
 async def async_endpoint():
     print(f"Processing request in async endpoint... at {datetime.datetime.now()}",flush=True)
+    # Simulate some processing before the long-running task with asynchronous sleep. time.sleep() would block the thread, so we use asyncio.sleep() instead.
     await asyncio.sleep(2)  # Simulate a long-running task
     return {"message": "This is an asynchronous endpoint."}
 
@@ -96,5 +97,6 @@ async def attach_file_upload(todo_id: Annotated[int, Path()], file: UploadFile):
     todo_item = _get_todo_or_404(todo_id)
     todo_item.file_name = file.filename
     file_content = await file.read()
+    print(file_content)
     todo_item.file_size = len(file_content)
     return todo_item

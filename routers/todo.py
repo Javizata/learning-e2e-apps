@@ -40,6 +40,9 @@ def _get_todo_or_404(todo_id: int) -> TodoI:
     return todo_item
 
 # Path operation decorator for the to_do endpoint
+# Endpoint to read all To Do items, optionally filtered by completion status
+# The petition is /api/to_do?completed=true indicating that only completed To Do items should be returned.
+# If no parameter is provided, /api/to_do.
 @router.get("/to_do", response_model=list[TodoI])
 async def read_to_do(completed: Optional[bool] = None):
     if completed is not None:
@@ -48,6 +51,7 @@ async def read_to_do(completed: Optional[bool] = None):
 
 
 # Path operation decorator for the to_do/{todo_id} endpoint
+# Function defined outside in order to be used by many decorators.
 @router.get("/to_do/{todo_id}", response_model=TodoI)
 async def read_todo_by_id(todo_id: int):
     return _get_todo_or_404(todo_id)
@@ -77,6 +81,7 @@ async def async_endpoint():
     return {"message": "This is an asynchronous endpoint."}
 
 # Path operation decorator for the to_do/{todo_id}/attach-file endpoint
+# It attaches a file to the specified To Do item. It does not create a new To Do item.
 @router.post("/todo/{todo_id}/attach-file", response_model=TodoI)
 async def attach_file(todo_id: Annotated[int, Path()], file: Annotated[bytes, File()]):
     todo_item = _get_todo_or_404(todo_id)
@@ -85,6 +90,7 @@ async def attach_file(todo_id: Annotated[int, Path()], file: Annotated[bytes, Fi
 
 
 # Path operation decorator for the to_do/{todo_id}/attach-file-upload endpoint
+# It attaches a file to the specified To Do item using file upload. It does not create a new To Do item.
 @router.post("/todo/{todo_id}/attach-file-upload", response_model=TodoI)
 async def attach_file_upload(todo_id: Annotated[int, Path()], file: UploadFile):
     todo_item = _get_todo_or_404(todo_id)

@@ -1,6 +1,6 @@
 /learning-e2e-apps/__pycache__/
 /learning-e2e-apps/*.pyc
-/learning-e2e-apps/.env
+/learning-e2e-apps/env
 /learning-e2e-apps/.venv/
 /learning_exercises/*
 /env/
@@ -8,3 +8,6 @@
 /routers/__pycache__/*
 __pycache__/
 *.py[cod]
+.env
+.env.*
+!.env.example
